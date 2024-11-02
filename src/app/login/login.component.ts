@@ -20,20 +20,20 @@ export class LoginComponent implements OnInit {
   loginUsername : string = "";
   loginPassword : string = "";
 
-  constructor(public route : Router,public flappyService:FlappyBirdService,public http :HttpClient) { }
+  constructor(public route : Router,public FlappyService:FlappyBirdService,public http :HttpClient) { }
 
   ngOnInit() {
   }
 
   login(){
 
-
+   this.FlappyService.getLogin(this.loginUsername,this.loginPassword)
     // Redirection si la connexion a réussi :
     this.route.navigate(["/play"]);
   }
 
   register(){
-    this.flappyService.registerUser(this.registerUsername, this.registerEmail, this.registerPassword, this.registerPasswordConfirm)
+    this.FlappyService.registerUser(this.registerUsername, this.registerEmail, this.registerPassword, this.registerPasswordConfirm)
 
   }
 
