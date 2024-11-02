@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FlappyBirdService } from '../services/FlappyBird.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
   loginUsername : string = "";
   loginPassword : string = "";
 
-  constructor(public route : Router) { }
+  constructor(public route : Router,public flappyService:FlappyBirdService,public http :HttpClient) { }
 
   ngOnInit() {
   }
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   register(){
+    this.flappyService.registerUser(this.registerUsername, this.registerEmail, this.registerPassword, this.registerPasswordConfirm)
 
   }
 
