@@ -32,6 +32,8 @@ export class ScoreComponent implements OnInit {
 
   async changeScoreVisibility(score : Score){
 
+    score = await this.FlappyService.ChangeScoreVisiblity(score ,!score.isPublic);
+
 
   }
 
