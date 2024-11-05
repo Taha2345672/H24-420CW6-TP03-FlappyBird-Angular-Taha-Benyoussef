@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { RegisterDTO } from '../models/RegisterDTO';
 import { LoginDTO } from '../models/LoginDTO';
+import { Score } from '../models/score';
 
 
 @Injectable({
@@ -31,6 +32,10 @@ sessionStorage.setItem ("token", x.token)
 return x;
 
 }
-
+async getPublicScore():Promise<Score[]>{
+  let y = await lastValueFrom(this.http.get<Score[]> ("https://localhost:7075/api/Scores/GetPublicScores"));
+  console.log(y);
+  return y ;
+}
 
 }
