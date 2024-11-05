@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { RegisterDTO } from '../models/RegisterDTO';
 import { LoginDTO } from '../models/LoginDTO';
-import { Score } from '../models/score';
+import { Score } from '../models/Score';
 
 
 @Injectable({
@@ -28,7 +28,7 @@ console.log(loginDTO)
 let x =await lastValueFrom(this.http.post<any>("https://localhost:7075/api/Users/Login", loginDTO));
 console.log(x)
 sessionStorage.setItem ("token", x.token)
-  sessionStorage.setItem ("loginUsername",loginUsername)
+sessionStorage.setItem ("loginUsername",loginUsername)
 return x;
 
 }
@@ -38,4 +38,11 @@ async getPublicScore():Promise<Score[]>{
   return y ;
 }
 
+async getMyScores():Promise<Score[]>{
+  let z = await lastValueFrom(this.http.get<Score[]> ("http://localhost:7075/api/Scores/GetMyscores"));
+  console.log(z);
+  return z ;
 }
+
+}
+

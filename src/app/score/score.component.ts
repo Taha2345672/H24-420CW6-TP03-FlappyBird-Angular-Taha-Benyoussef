@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Score } from '../models/score';
+import { Score } from '../models/Score';
 
 @Component({
   selector: 'app-score',
