@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Score } from '../models/Score';
+import { FlappyBirdService } from '../services/FlappyBird.service';
+import { Score } from '../models/Scores';
 
 @Component({
   selector: 'app-score',
@@ -12,12 +13,20 @@ export class ScoreComponent implements OnInit {
   publicScores : Score[] = [];
   userIsConnected : boolean = false;
 
-  constructor() { }
+  constructor(public FlappyService:FlappyBirdService) { }
 
   async ngOnInit() {
 
     this.userIsConnected = sessionStorage.getItem("token") != null;
+    
+    this.userIsConnected = sessionStorage.getItem("token") != null;
+    console.log(this.userIsConnected)
 
+    this.publicScores = await this.FlappyService.getPublicScore();
+
+    if (this.userIsConnected){
+      this.myScores = await this.FlappyService.getMyScores();
+    }
 
   }
 

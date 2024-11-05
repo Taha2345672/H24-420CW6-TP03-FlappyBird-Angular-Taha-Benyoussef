@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { RegisterDTO } from '../models/RegisterDTO';
 import { LoginDTO } from '../models/LoginDTO';
-import { Score } from '../models/Score';
+import { Score } from '../models/Scores';
+
 
 
 @Injectable({
@@ -43,6 +44,11 @@ async getMyScores():Promise<Score[]>{
   console.log(z);
   return z ;
 }
-
+async ChangeScoreVisiblity (score : Score , Visiblity : boolean){
+  score.isPublic = Visiblity;
+  let w = await lastValueFrom(this.http.put<Score> ("http://localhost:7075/api/Scores/ChangeScoreVisiblity"+score.id,score));
+console.log( w);
+return w
 }
 
+}
