@@ -44,6 +44,12 @@ async getMyScores():Promise<Score[]>{
   console.log(z);
   return z ;
 }
+
+async Postscore(pseudo : string | null, timeInSeconds : string ,scoreValue : number , isPublic : boolean){
+  let newresponse = new Score (0, pseudo ,null,timeInSeconds,scoreValue,isPublic)
+  let response = await lastValueFrom(this.http.post<Score> ("http://localhost:7075/api/Scores/PostScores", newresponse));
+  console.log(response)
+}
 async ChangeScoreVisiblity (score : Score , Visiblity : boolean){
   score.isPublic = Visiblity;
   let w = await lastValueFrom(this.http.put<Score> ("http://localhost:7075/api/Scores/ChangeScoreVisiblity"+score.id,score));
