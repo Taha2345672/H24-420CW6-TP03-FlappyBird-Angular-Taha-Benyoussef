@@ -16,8 +16,8 @@ constructor(public http: HttpClient) { }
 async registerUser(username: string, email: string, password: string, passwordConfirm:string){
   let registerDTO: RegisterDTO= new RegisterDTO(0,username,email,password,passwordConfirm);
   console.log(registerDTO)
-  let response = await lastValueFrom(this.http.post<RegisterDTO> ("https://localhost:7075/api/Users/Register",registerDTO));
-  console.log(response);
+  let q = await lastValueFrom(this.http.post<RegisterDTO> ("https://localhost:7075/api/Users/Register",registerDTO));
+  console.log(q);
 
 
 
@@ -47,8 +47,8 @@ async getMyScores():Promise<Score[]>{
 
 async Postscore(pseudo : string | null, timeInSeconds : string ,scoreValue : number , isPublic : boolean){
   let newresponse = new Score (0, pseudo ,null,timeInSeconds,scoreValue,isPublic)
-  let response = await lastValueFrom(this.http.post<Score> ("http://localhost:7075/api/Scores/PostScores", newresponse));
-  console.log(response)
+  let v = await lastValueFrom(this.http.post<Score> ("http://localhost:7075/api/Scores/PostScores", newresponse));
+  console.log(v)
 }
 async ChangeScoreVisiblity (score : Score , Visiblity : boolean){
   score.isPublic = Visiblity;
