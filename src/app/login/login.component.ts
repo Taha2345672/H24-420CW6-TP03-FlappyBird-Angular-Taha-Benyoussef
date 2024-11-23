@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   register(){
-    this.FlappyService.registerUser(this.registerUsername, this.registerEmail, this.registerPassword, this.registerPasswordConfirm)
+    this.FlappyService.registerUser()
 
   }
 

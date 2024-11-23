@@ -12,9 +12,15 @@ import { Score } from '../models/Scores';
 })
 export class FlappyBirdService {
 
+  username : string = "";
+  email : string = "";
+  password : string = "";
+  passwordConfirm : string = "";
+
+
 constructor(public http: HttpClient) { }
-async registerUser(username: string, email: string, password: string, passwordConfirm:string){
-  let registerDTO: RegisterDTO= new RegisterDTO(0,username,email,password,passwordConfirm);
+async registerUser(){
+  let registerDTO: RegisterDTO= new RegisterDTO(this.username,this.email,this.password,this.passwordConfirm);
   console.log(registerDTO)
   let q = await lastValueFrom(this.http.post<RegisterDTO> ("https://localhost:7075/api/Users/Register",registerDTO));
   console.log(q);
