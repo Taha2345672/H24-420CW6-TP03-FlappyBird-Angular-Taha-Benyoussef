@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   login(){
 
-   this.FlappyService.getLogin(this.loginUsername,this.loginPassword)
+   this.FlappyService.getLogin()
     // Redirection si la connexion a réussi :
     this.route.navigate(["/play"]);
   }

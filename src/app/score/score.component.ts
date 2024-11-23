@@ -17,7 +17,7 @@ export class ScoreComponent implements OnInit {
 
   async ngOnInit() {
 
-    this.userIsConnected = sessionStorage.getItem("token") != null;
+    
     
     this.userIsConnected = sessionStorage.getItem("token") != null;
     console.log(this.userIsConnected)

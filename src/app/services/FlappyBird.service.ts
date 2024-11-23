@@ -17,6 +17,8 @@ export class FlappyBirdService {
   password : string = "";
   passwordConfirm : string = "";
 
+  loginUsername : string = "";
+  loginPassword : string = "";
 
 constructor(public http: HttpClient) { }
 async registerUser(){
@@ -29,13 +31,12 @@ async registerUser(){
 
 }
 
-async getLogin(Username:string,Password:string){
-let loginDTO = new LoginDTO (Username,Password);
+async getLogin(){
+let loginDTO = new LoginDTO (this.loginUsername, this.loginPassword);
 console.log(loginDTO)
 let x =await lastValueFrom(this.http.post<any>("https://localhost:7075/api/Users/Login",loginDTO));
 console.log(x)
 sessionStorage.setItem ("token", x.token)
-sessionStorage.setItem ("loginUsername",Username)
 return x;
 
 }

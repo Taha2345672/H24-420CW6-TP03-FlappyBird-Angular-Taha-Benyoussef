@@ -12,13 +12,14 @@ import { Round_00Pipe } from './pipes/round_00.pipe';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 @NgModule({
-  declarations: [			
+  declarations: [					
     AppComponent,
       LoginComponent,
       PlayComponent,
       ScoreComponent,
-      Round_00Pipe
+      Round_00Pipe,
      
    ],
   imports: [
