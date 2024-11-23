@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { RegisterDTO } from '../models/RegisterDTO';
@@ -31,16 +31,19 @@ async registerUser(){
 
 }
 
-async getLogin(){
-let loginDTO = new LoginDTO (this.loginUsername, this.loginPassword);
+async getLogin(Username:string,Password:string){
+let loginDTO = new LoginDTO (Username,Password);
 console.log(loginDTO)
 let x =await lastValueFrom(this.http.post<any>("https://localhost:7075/api/Users/Login",loginDTO));
 console.log(x)
 sessionStorage.setItem ("token", x.token)
+sessionStorage.setItem ("loginUsername",Username)
 return x;
 
 }
 async getPublicScore():Promise<Score[]>{
+  headers: new HttpHeaders({
+    'Authorization': 'Bearer ' + localStorage.getItem('jwt_token') })
   let y = await lastValueFrom(this.http.get<Score[]> ("https://localhost:7075/api/Scores/GetPublicScores"));
   console.log(y);
   return y ;
